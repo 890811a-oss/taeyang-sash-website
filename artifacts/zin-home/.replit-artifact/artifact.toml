@@ -1,0 +1,27 @@
+kind = "web"
+previewPath = "/"
+title = "LX Z:IN 스타일 홈페이지"
+version = "1.0.0"
+id = "artifacts/zin-home"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 24310
+
+[services.development]
+run = "pnpm --filter @workspace/zin-home run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/zin-home", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/zin-home/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "24310"
+BASE_PATH = "/"

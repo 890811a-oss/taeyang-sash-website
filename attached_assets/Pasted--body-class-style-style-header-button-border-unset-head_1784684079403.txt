@@ -1,0 +1,969 @@
+<body class="" style="">
+<style>
+header button {border:unset;}
+#headerModal {padding:0 !important;}
+#headerModal .modal-dialog {max-width:unset;width:100%;height:100%;margin:0;}
+#headerModal .modal-content {width:70%;height:100%;position:relative;display:flex;background-color:#F5F5F5;justify-content:center;padding:0 7%;flex-direction:row;align-items:center;gap:6.25rem;margin-left:auto;}
+#headerModal .modal-content button.btn-close {position:fixed;top:1.25rem;right:7%;opacity:1;padding:0;width:1.5rem;height:1.5rem;}
+#headerModal .modal-content button.btn-back {position:fixed;top:1.25rem;left:7%;display:none;background:unset;border:unset;}
+#headerModal .modal-content button.btn-back.active {display:inline-block;}
+#headerModal .modal-content button.btn-back i {transform:rotate(180deg)}
+#headerModal .modal-body {display:flex;flex-direction:row;justify-content:space-between;padding:0;}
+#headerModal .img-cont {width:30%;aspect-ratio:1/1.5;position:relative;}
+#headerModal .img-cont img {position:absolute;top:0;left:0;width:100%;height:100%;}
+#headerModal .menu-cont {display:flex;width:100%;padding:0;justify-content:space-between;flex-direction:column;}
+#headerModal .menu-cont .top-cont {display:flex;flex-direction:column;gap:2.5rem;margin-bottom:4.5rem;}
+#headerModal .menu-cont .top-cont li {display:flex;cursor: pointer;align-items:end;}
+#headerModal .menu-cont .top-cont li p {display:inline-flex;}
+#headerModal .menu-cont .top-cont li > div {display:inline-flex;flex-direction:column;}
+#headerModal .menu-cont .top-cont li a {display:inline-flex;flex-direction:column;color:#a4a4a4;}
+#headerModal .menu-cont .top-cont li:hover *, #headerModal .menu-cont .top-cont li.active * {color:#000;}
+#headerModal .menu-cont .top-cont li span {text-transform:uppercase;color:#a4a4a4;}
+#headerModal .menu-cont .bottom-cont {display:flex;padding-top:2.5rem;border-top:1px solid #767676;}
+#headerModal .menu-cont .bottom-cont a {margin-right:2.5rem;}
+#headerModal .cate-cont {display:flex;flex-direction:column;height:100%;gap:2.5rem;}
+#headerModal .cate-cont li, #headerModal .cate-cont li a, #headerModal .sub-cate-cont li, #headerModal .sub-cate-cont li a {color:#c7c7c7; cursor:pointer;}
+#headerModal .cate-cont li a ,#headerModal .sub-cate-cont li a {color:#c7c7c7;}
+#headerModal .cate-cont li.active a, #headerModal .sub-cate-cont li.active a, #headerModal .cate-cont li:hover a, #headerModal .sub-cate-cont li:hover a {color:#000;}
+#headerModal .sub-cate-cont {display:flex;flex-direction:column;}
+#headerModal .sub_cate {display:none; margin-left:1.5rem;}
+#headerModal .bottom-cont a {color:black;}
+#floating-btn {position:fixed;bottom:2.5rem;right:4%;background:#fff;border-radius:1.875rem;display:inline-flex;height:3rem;align-items:center;padding:.5rem 1.25rem;z-index:999;color:#000;}
+#floating-btn span {color:#000;}
+#floating-btn hr {width:1px;height:1rem;background:#767676;margin:0 .75rem;}
+.top-header {padding-bottom:0.5rem;margin-bottom:1rem;}
+.top-header-nav li > a {height: 1.5rem;line-height: 1.5rem;}
+.top-header-nav li .eyoom-form {margin: 0;}
+
+@media (max-width: 1024px) {
+    #headerModal .modal-content {padding-top:2.5rem;padding-bottom:2.5rem;width:100%;}
+    #headerModal .modal-body {height:100%;width:100%;}
+    #headerModal .img-cont {display:none;}
+    #headerModal .menu-cont {width:100%;align-items:center;justify-content:flex-end;gap:3.5rem;}
+    #headerModal .menu-cont .top-cont {justify-content:center;align-items:center;gap:2rem;}
+    #headerModal .menu-cont .top-cont li > div {align-items:center;}
+    #headerModal .mix-title .headline-2-sa, #headerModal .mix-title .headline-2-ts {font-size:2rem;}
+    #headerModal .menu-cont .top-cont li a {display:flex;flex-direction:column;text-align:center}
+    #headerModal .menu-cont .top-cont li a > span {font-size:1rem;}
+    #headerModal .menu-cont .top-cont li span:nth-last-child(2), #headerModal .menu-cont .top-cont li a > span {margin:0;}
+    #headerModal .menu-cont .bottom-cont {width:86%;justify-content:center;}
+    #headerModal .menu-cont .bottom-cont a {margin-right:1rem;}
+    #headerModal .cate-cont {gap:2rem;}
+    #headerModal .cate-cont, #headerModal .sub-cate-cont {align-items:center;justify-content:flex-end;}
+}
+</style>
+
+<div class="wrapper">
+    
+<style>
+#hd_pop {z-index:9999}
+#hd_pop .slick-next, #hd_pop .slick-prev {width:20px;height:100%;background:#fff}
+#hd_pop .slick-next:before, #hd_pop .slick-prev:before {font-family:'Font Awesome\ 5 Free';font-weight:900;color:#000;font-size:16px}
+#hd_pop .slick-next:before {content:"\f054"}
+#hd_pop .slick-prev:before {content:"\f053"}
+#hd_pop .slick-dotted.slick-slider {margin:0;}
+#hd_pop #modal_hd_pop {padding:0 !important;display:flex;align-items:end;width:100%;height:100dvh;}
+#hd_pop .modal-dialog {display:none;width:100%;height:100%;align-items:end;margin:0;justify-content:end;margin-left:auto;}
+#hd_pop .modal-dialog .modal-content {background:unset;width:31.25rem;}
+#hd_pop .modal-dialog .modal-body {padding:0;margin:0;}
+#hd_pop .modal-dialog .hd-pops-content {display:none;position:relative;width:100%;aspect-ratio:50/44;overflow:hidden;border-radius: 10px 10px 0 0;}
+#hd_pop .modal-dialog .hd-pops-content * {width:100%;height:100%}
+#hd_pop .modal-dialog .slick-dots {height:auto;bottom:1rem;}
+#hd_pop .modal-dialog .slick-dots li {margin:0;}
+#hd_pop .modal-dialog .hd-pops-list {position:relative;overflow:hidden;outline:none;}
+#hd_pop .modal-dialog .hd-pops-list img {position:absolute;top:0;left:0;width:100% !important;height:100% !important;object-fit:cover;}
+#hd_pop .modal-dialog .modal-footer {display:flex;justify-content:space-between;background:#fff;padding:1rem 1.25rem;}
+#hd_pop .modal-dialog .modal-footer button {background:unset;border:unset;margin:0;padding:0;color:#000;}
+@media (max-width:1024px) {
+    #hd_pop .modal-dialog .modal-content {background:unset;width:100%;max-width:31.25rem;}
+    #hd_pop .modal-dialog {margin-right:auto;margin-left:auto;width:100%;max-width:31.25rem;}
+}
+</style>
+
+<div id="hd_pop">
+    <div id="modal_hd_pop" class="modal fade" tabindex="-1" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog" style="display: flex;">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="hd-pops-content slick-initialized slick-slider" style="display: block;"><div class="slick-list draggable"><div class="slick-track" style="opacity: 1; width: 500px; transform: translate3d(0px, 0px, 0px);"><div class="slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" style="width: 500px;"><div><div id="hd_pops_list" class="hd-pops-list" style="width: 100%; display: inline-block;">
+                        <a href="/product/2010000003" target="_blank" tabindex="0">
+                            <img src="http://www.ylchem.co.kr/data/newwin/img/f9e63bc5840d6064a90207f5b6bfa67f.jpg" alt="" title="">
+                        </a>
+                    </div></div></div></div></div></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="hd_pops_reject body-2-pre" data-bs-dismiss="modal">오늘 하루 보지 않기</button>
+                    <button type="button" class="body-2-pre" data-bs-dismiss="modal">닫기</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="http://www.ylchem.co.kr/theme/eb4_basic/plugins/slick/slick.min.js"></script>
+<script>
+$(function() {
+    setTimeout(function(){
+        $('#modal_hd_pop').modal('show').on('shown.bs.modal', function() {
+            $('html').css({overflow: 'hidden'});
+            $('.modal-dialog').css("display", "flex");
+            $('.hd-pops-content').css("display", "block");
+            $('.hd-pops-content').slick({
+                infinite: true,
+                autoplay: true,
+                autoplaySpeed: 10000,
+                dots: true,
+                arrows: false
+            });
+        });
+    }, 1000);
+
+    $('#modal_hd_pop').on('hidden.bs.modal', function() {
+        $('html').css({overflow: ''});
+    });
+});
+
+$(function() {
+    $(".hd_pops_reject").click(function() {
+        var ck_name = 'hd_pops_list';
+        var nw_disable_hours = '24';
+        var exp_time = parseInt(nw_disable_hours);
+        set_cookie(ck_name, 1, exp_time, g5_cookie_domain);
+    });
+});
+</script>
+        <header class="header-wrap ">
+            <div class="header-title row">
+                                                <a href="http://www.ylchem.co.kr" class="header-logo">
+                    <img src="http://www.ylchem.co.kr/data/common/59994b576702da6a2aea95907e000daf_xAw54oz3_c012b5844f080eab4ed488458ab73dfef852d5fa.png" alt="영림화학주식회사">
+                </a>
+                            <button type="button" class="menu-icon" id="menuButton" data-bs-toggle="modal" data-bs-target="#headerModal"></button>
+        </div>
+    </header>
+        <div class="modal fade" id="headerModal" tabindex="-1" aria-labelledby="headerModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="display: flex;">
+        <div class="modal-content">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button type="button" class="btn-back"><i class="arrow-r-b-icon"></i></button>
+            <div class="modal-body">
+                <div class="menu-cont">
+                    <ul class="top-cont mix-title">
+                        <li>
+                            <a href="/about">
+                                <p>
+                                    <span class="headline-2-ts">our&nbsp;</span>
+                                    <span class="headline-2-sa">st</span>
+                                    <span class="headline-2-ts">o</span>
+                                    <span class="headline-2-sa">ry</span>
+                                </p>
+                                <span class="title-2-pre">기업 소개</span>
+                            </a>
+                        </li>
+                        <li id="menu-products">
+                            <div>
+                                <a href="/windowguide">
+                                    <p>
+                                        <span class="headline-2-sa">pr</span>
+                                        <span class="headline-2-ts">o</span>
+                                        <span class="headline-2-sa">ducts</span>
+                                    </p>
+                                </a>
+                                <p>
+                                    <a class="title-2-pre" href="/product/list-2010">영림프라임창호</a>
+                                    <span class="m-l-20 m-r-20 title-2-pre" style="font-size:20px">|</span>
+                                    <a class="title-2-pre" href="/apfelwindow">아펠윈도우</a>
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="/showroom">
+                                <p>
+                                    <span class="headline-2-ts">show</span>
+                                    <span class="headline-2-sa">room</span>
+                                </p>
+                                <span class="title-2-pre">쇼룸 안내</span>
+                                </a>
+                        </li>
+                        <li>
+                            <div>
+                                <p><span class="headline-2-ts">service</span></p>
+                                <p class="title-2-pre">
+                                    <a href="/as">A/S</a>
+                                    <span class="m-l-20 m-r-20 title-2-pre" style="font-size:20px">|</span>
+                                    <a href="/board/project">시공사례</a>
+                                    <span class="m-l-20 m-r-20 title-2-pre" style="font-size:20px">|</span>
+                                    <a href="/group/media">미디어</a>
+                                    <span class="m-l-20 m-r-20 title-2-pre" style="font-size:20px">|</span>
+                                    <a href="/catalog">E-카탈로그</a>
+                                </p>
+                </div>
+                        </li>
+                    </ul>
+                    <div class="bottom-cont">
+                        <a class="body-2-pre" href="/" target="_blank">홈</a>
+                        <a class="body-2-pre" href="https://www.yl.co.kr" target="_blank">영림 토탈 홈페이지</a>
+                        <a class="body-2-pre" href="https://www.yl.co.kr/remodelConsult">견적문의</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <a id="floating-btn" href="https://www.yl.co.kr/remodelConsult" target="_blank">
+        <span class="body-2-pre">리모델링 상담받기</span>
+        <hr>
+        <i class="yl-logo"></i>
+    </a>
+
+    <div class="basic-body ">
+        <div class="container">
+            <div class="main-wrap">
+                <main class="basic-body-main">
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+
+    const menuButton = document.getElementById('menuButton');
+    const headerModal = new bootstrap.Modal(document.getElementById('headerModal'));
+
+    // hover 시 모달 열기
+    menuButton.addEventListener('mouseenter', () => {
+        headerModal.show();
+    });
+
+
+  const btn = document.querySelector("#floating-btn");
+  const footer = document.querySelector(".footer");
+  if (!btn || !footer) return;
+
+  let isHidden = false;
+
+  window.addEventListener("scroll", () => {
+    const btnRect = btn.getBoundingClientRect();
+    const footerRect = footer.getBoundingClientRect();
+
+    if (btnRect.bottom > footerRect.top && !isHidden) {
+      gsap.to(btn, { opacity: 0, duration: 0.3, pointerEvents: "none" });
+      isHidden = true;
+    } else if (btnRect.bottom <= footerRect.top && isHidden) {
+      gsap.to(btn, { opacity: 1, duration: 0.3, pointerEvents: "auto" });
+      isHidden = false;
+    }
+  });
+});
+
+</script>
+
+<div class="main-page">
+        <section class="mv-section">
+        <video autoplay="" muted="" loop="" playsinline="">
+        <source src="http://www.ylchem.co.kr/data/ebcontents/eb4_basic/attach/83b10c0a6d636c35dea9718017ab6bb6_Nd3AM6OK_2e158dfb37d51a27b614b809d69b451e0790b22f.mp4" type="video/mp4">
+    </video>
+        <div class="swiper swiper-fade swiper-initialized swiper-horizontal swiper-watch-progress swiper-backface-hidden">
+        <div class="swiper-wrapper" id="swiper-wrapper-c3cb76a8a4fc71048" aria-live="off" style="transition-duration: 0ms; transition-delay: 0ms;">
+                            
+                            
+                            
+                    <div class="swiper-slide item-0 swiper-slide-next" role="group" aria-label="1 / 3" data-swiper-slide-index="0" style="width: 1454px; opacity: 0; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
+                                    <div class="title"><p><font face="Satoshi">see</font><span style="font-family: the-seasons;">&nbsp;</span><span style="font-family: the-seasons;">more&nbsp;</span><span style="font-family: Satoshi;"><span style="font-family: Satoshi;">through</span>&nbsp;</span><span style="font-family: the-seasons;">a&nbsp;</span><span style="font-family: the-seasons;">frame</span></p></div>
+                                    </div><div class="swiper-slide item-1 swiper-slide-prev" role="group" aria-label="2 / 3" data-swiper-slide-index="1" style="width: 1454px; opacity: 0; transform: translate3d(-1454px, 0px, 0px); transition-duration: 0ms;">
+                                    <div class="title"><p>
+   <span style="font-family: Satoshi;">feel</span>&nbsp;<span style="font-family: the-seasons;">safer&nbsp;in every detail</span>
+</p></div>
+                                    </div><div class="swiper-slide item-2 swiper-slide-visible swiper-slide-fully-visible swiper-slide-active" role="group" aria-label="3 / 3" data-swiper-slide-index="2" style="width: 1454px; opacity: 1; transform: translate3d(-2908px, 0px, 0px); transition-duration: 0ms;">
+                                    <div class="title"><p><span style="font-family: the-seasons;">quality <span style="font-family: Satoshi;">that</span> opens <span style="font-family: Satoshi;">life</span></span></p></div>
+                                    </div></div>
+<span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+
+</section>
+<script>
+var main_mv_swiper = new Swiper(".main-page .mv-section .swiper", {
+    loop: true,
+    spaceBetween:0,
+    autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+    },
+    effect: "fade",
+    fadeEffect: { crossFade: true },
+  });
+</script>
+    <div class="main-slide">
+    <div class="title">
+        <p class="title-2-pre" style="translate: none; rotate: none; scale: none; transform: translate(0px, 50px); opacity: 0; visibility: hidden;">빛을 설계하다, 공간을 완성하다</p>
+        <div class="title-en"><p style="translate: none; rotate: none; scale: none; transform: translate(0px, 50px); opacity: 0; visibility: hidden;">
+   <span style="font-family: the-seasons;">Let Light in,</span>
+</p>
+<p style="translate: none; rotate: none; scale: none; transform: translate(0px, 50px); opacity: 0; visibility: hidden;">Let Life in.<br></p></div>
+                
+    </div>
+    <div class="swiper swiper-main swiper-fade swiper-initialized swiper-horizontal swiper-watch-progress swiper-backface-hidden" style="translate: none; rotate: none; scale: none; transform: translate(0px, 50px); opacity: 0; visibility: hidden;">
+            <div class="swiper-wrapper" id="swiper-wrapper-27e078c3c02082b7" aria-live="off" style="transition-duration: 0ms; transition-delay: 0ms;">
+                            
+                
+                            
+                
+                            <div class="swiper-slide swiper-slide-next" role="group" aria-label="3 / 3" data-swiper-slide-index="2" style="width: 774px; opacity: 0; transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
+                    <a href="/about" target="">
+                        <img src="http://www.ylchem.co.kr/data/ebcontents/eb4_basic/img/9e50a3178c334cdda2c455a42b18fbd0.jpg" alt="">
+                        <div class="overlay"></div>
+                        <div class="viewmore-btn body-3-sa">view more<i class="arrow-r-b-icon"></i></div>
+                    </a>
+                    <p class="swiper-cont title-2-pre">
+                        창으로 빛을 들이고 공간에 숨을 불어넣어, 당신의 하루가 머물 수 있도록.<br>
+삶의 한가운데 당신의 일상과 온기를 오래도록 생각합니다.	<br>
+                    </p>
+                                    </div>
+                
+                           
+            <div class="swiper-slide swiper-slide-prev" role="group" aria-label="1 / 3" data-swiper-slide-index="0" style="width: 774px; opacity: 0; transform: translate3d(-774px, 0px, 0px); transition-duration: 0ms;">
+                    <a href="/about" target="_self">
+                        <img src="http://www.ylchem.co.kr/data/ebcontents/eb4_basic/img/d5b47e571f70a50bac4a6ac4bbd317d3.jpg" alt="">
+                        <div class="overlay"></div>
+                        <div class="viewmore-btn body-3-sa">view more<i class="arrow-r-b-icon"></i></div>
+                    </a>
+                    <p class="swiper-cont title-2-pre">
+                        창으로 빛을 들이고 공간에 숨을 불어넣어, 당신의 하루가 머물 수 있도록.<br>
+삶의 한가운데 당신의 일상과 온기를 오래도록 생각합니다.	                    </p>
+                                    </div><div class="swiper-slide swiper-slide-visible swiper-slide-fully-visible swiper-slide-active" role="group" aria-label="2 / 3" data-swiper-slide-index="1" style="width: 774px; opacity: 1; transform: translate3d(-1548px, 0px, 0px); transition-duration: 0ms;">
+                    <a href="/about" target="">
+                        <img src="http://www.ylchem.co.kr/data/ebcontents/eb4_basic/img/16eb403bf5f4f42610279c9f00db8715.jpg" alt="">
+                        <div class="overlay"></div>
+                        <div class="viewmore-btn body-3-sa">view more<i class="arrow-r-b-icon"></i></div>
+                    </a>
+                    <p class="swiper-cont title-2-pre">
+                        창으로 빛을 들이고 공간에 숨을 불어넣어, 당신의 하루가 머물 수 있도록.<br>
+삶의 한가운데 당신의 일상과 온기를 오래도록 생각합니다.	<br>
+                    </p>
+                                    </div></div>
+            <div class="swiper-pagination body-3-sa swiper-pagination-fraction swiper-pagination-horizontal"><span class="swiper-pagination-current">02</span> / <span class="swiper-pagination-total">03</span></div>
+        <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+</div>
+
+<script>
+var main_slide = new Swiper(".main-slide .swiper", {
+    loop: true,
+    spaceBetween:0,
+    autoplay: {
+        delay: 7000,
+        disableOnInteraction: false,
+    },
+    effect: "fade",
+    fadeEffect: { crossFade: true },
+    pagination: {
+    el: ".swiper-pagination",
+    type: "fraction",
+    renderFraction: function (currentClass, totalClass) {
+        return `<span class="${currentClass}"></span> / <span class="${totalClass}"></span>`;
+    	},
+        formatFractionCurrent: function (number) {
+            return number < 10 ? '0' + number : number;  
+        },
+        formatFractionTotal: function (number) {
+            return number < 10 ? '0' + number : number;  
+        },
+      },
+  });
+
+gsap.fromTo([".main-slide .title p", ".main-slide .title .line",".main-slide .swiper"], {
+    autoAlpha:0,
+    y: 50,
+    },{
+        autoAlpha:1,
+        y: 0,
+        stagger: 0.25,
+        scrollTrigger: {
+            trigger: ".main-slide",
+            start: "top 50%",
+        },
+    }
+);
+
+document.querySelectorAll('.main-slide .swiper-slide').forEach(slide => {
+    const viewmoreBtn = slide.querySelector('.viewmore-btn'); // 슬라이드 내부 버튼 선택
+    if (!viewmoreBtn) return;
+
+    slide.addEventListener('mousemove', (e) => {
+        const rect = slide.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        viewmoreBtn.style.left = `${x}px`;
+        viewmoreBtn.style.top = `${y}px`;
+    });
+
+    slide.addEventListener('mouseenter', () => {
+        viewmoreBtn.style.opacity = 1;
+    });
+
+    slide.addEventListener('mouseleave', () => {
+        viewmoreBtn.style.opacity = 0;
+    });
+});
+</script>
+    
+
+
+<section class="about-section">
+        <div class="left_img" style="translate: none; rotate: none; scale: none; transform: translate(0px, 50px); opacity: 0; visibility: hidden;">
+            <img src="http://www.ylchem.co.kr/data/ebcontents/eb4_basic/img/36e41b71a6d9a4707a0bf237230504fe.jpg" alt="">
+        </div>
+        <div class="center_content">
+            <div class="title"><p style="translate: none; rotate: none; scale: none; transform: translate(0px, 50px); opacity: 0; visibility: hidden;">
+   <span style="font-family: Satoshi;">beyond the frame,</span>
+</p>
+<p style="translate: none; rotate: none; scale: none; transform: translate(0px, 50px); opacity: 0; visibility: hidden;">
+   <span style="font-family: Satoshi;">int<span style="font-family: the-seasons;">o</span></span>&nbsp;<span style="font-family: Satoshi;">the essence.</span><br>
+</p></div>
+            <div class="center_img" style="translate: none; rotate: none; scale: none; transform: translate(0px, 50px); opacity: 0; visibility: hidden;">
+                <img src="http://www.ylchem.co.kr/data/ebcontents/eb4_basic/img/875b3818468d559260694ae24e96293f.jpg" alt="">
+            </div>
+        </div>
+        <div class="right_text" style="translate: none; rotate: none; scale: none; transform: translate(0px, 50px); opacity: 0; visibility: hidden;">
+            <p class="title-2-pre">창을 넘어, 기술로 완성한 공간</p>
+            <p class="body-2-pre">
+                우리는 자연의 순수함과 아름다움을 창호에 담고자 합니다. 빛과 바람, 그리고 자연의 소리가 스며드는 그 자리 우리의 창호는 당신의 공간을 자연의 일부로 만들어줍니다.<br>
+매일 아침 창을 열 때마다 느껴지는 자연의 기운과, 하루가 끝날 때 평온한 자연의 흐름을 느끼는 것처럼 우리의 창호는 집과 외부의 경계를 허물고, 자연의 숨결을 실내로 불어넣습니다.            </p>
+        </div>
+        </section>
+
+<script>
+    gsap.fromTo([".main-page .about-section .title p", ".main-page .about-section .left_img",".main-page .about-section .center_img",".main-page .about-section .right_text"], {
+    autoAlpha:0,
+    y: 50,
+    },{
+        autoAlpha:1,
+        y: 0,
+        stagger: 0.25,
+        scrollTrigger: {
+            trigger: ".main-page .about-section",
+            start: "top 50%",
+        },
+    }
+)
+</script>
+    <div class="main-prod-section">
+    <div class="title-cont mix-title mix-title-cont">
+        <div class="en-title"><p><span style="font-family: Satoshi;">pr<span style="font-family: the-seasons;">o</span>duct</span></p></div>
+        <span class="title-2-pre">제품</span>
+            </div>
+    <div id="main_prod">
+                                    <div class="item">
+            <div class="text-cont">
+                <img src="http://www.ylchem.co.kr/data/ebcontents/eb4_basic/img/a54c187a0e81b8b08fa6e63750ea1d1a.png" class="logo pc-only" alt="로고">
+                <img src="http://www.ylchem.co.kr/data/ebcontents/eb4_basic/img/3cb5f8b80b288492568a8d3943e920ab.svg" class="logo mo-only" alt="로고">
+                <span class="divider"></span>
+                <span class="body-2-pre">영림프라임창호</span>
+            </div>
+            <a href="/product/list-2010" target="_self" class="img-cont">
+                <div class="overlay"></div>
+                <img src="http://www.ylchem.co.kr/data/ebcontents/eb4_basic/img/d2dd6f452c1662cd98cb429d78f9f0f5.jpg" alt="">
+                <div class="viewmore-btn body-3-sa">view more<i class="arrow-r-b-icon"></i></div>
+            </a>
+                    </div>
+                            <div class="item">
+            <div class="text-cont">
+                <img src="http://www.ylchem.co.kr/data/ebcontents/eb4_basic/img/c07fbfdea9c26c20a4200eb009ec7eed.svg" class="logo pc-only" alt="로고">
+                <img src="http://www.ylchem.co.kr/data/ebcontents/eb4_basic/img/dd96713fb766fe8a7637bd84eeb6e45e.svg" class="logo mo-only" alt="로고">
+                <span class="divider"></span>
+                <span class="body-2-pre">아펠윈도우</span>
+            </div>
+            <a href="product/list-1010" target="" class="img-cont">
+                <div class="overlay"></div>
+                <img src="http://www.ylchem.co.kr/data/ebcontents/eb4_basic/img/767febce2da5ea68064a197de07b9fe4.jpg" alt="">
+                <div class="viewmore-btn body-3-sa">view more<i class="arrow-r-b-icon"></i></div>
+            </a>
+                    </div>
+                            </div>
+</div>
+
+<script>
+    gsap.registerPlugin(ScrollTrigger);
+   
+    document.querySelectorAll('#main_prod .item').forEach(slide => {
+    const viewmoreBtn = slide.querySelector('.viewmore-btn');
+
+    slide.addEventListener('mousemove', (e) => {
+        const rect = slide.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        viewmoreBtn.style.left = `${x}px`;
+        viewmoreBtn.style.top = `${y}px`;
+    });
+
+    slide.addEventListener('mouseenter', () => {
+        viewmoreBtn.style.opacity = 1;
+    });
+
+    slide.addEventListener('mouseleave', () => {
+        viewmoreBtn.style.opacity = 0;
+    });
+    });
+
+</script>
+
+ 
+    
+
+
+<style>
+.visual-section {display:flex;flex-direction:column;width:100%;height:100vh;margin:15rem 0;position:relative;text-transform: capitalize;position:relative;}
+.visual-section::after {content:'';width:100%;height:100%;background:rgba(0, 0, 0, 0.30);position:absolute;top:0;left:0;}
+.visual-section .img-cont {position:absolute;width:100%;height:100%;display:flex;background-position:left center;background-size:cover;background-repeat:no-repeat;}
+.visual-section .img-cont .glass-item {position:relative;width:10%;height:100%;background:rgba(0, 0, 0, 0.2);background-position:center;border-right: 1px solid rgba(221, 221, 221, 0.10);border-left: 1px solid rgba(221, 221, 221, 0.10);background-size:cover;background-repeat:no-repeat;}
+.visual-section .img-cont .glass-item.pc-only {width:6.25%;}
+.visual-section .img-cont .glass-item.mo-only {width:20%;}
+.visual-section img {position:absolute;width:100%;height:100%;object-fit:cover;z-index: -1;top:0;left:0;}
+.visual-section .title {display:flex;flex-direction:column;}
+.visual-section .en-title {z-index: 2;color:#fff;position:relative;line-height:1;}
+.visual-section .en-title * {font-size:clamp(1rem, 6.37vw, 5rem);}
+.visual-section .text {color:#fff;z-index: 2;}
+.visual-section .pc-only {display:inline-block;}
+.visual-section .mo-only {display:none;}
+.visual-section .adm-edit-btn {top:50%;right:0;}
+.shop-list .visual-section, .window-page .visual-section, .apfelwindow-page .visual-section, .shop-search .visual-section {margin-top:0;margin-bottom:8rem;height:50vh;}
+.shop-list .visual-section .title,.shop-search .visual-section .title, .window-page .visual-section .title , .apfelwindow-page .visual-section .title  {position:relative;display:flex;padding:25vh 5% 0;}
+.shop-list .visual-section .title p:last-child,.shop-search .visual-section .title p:last-child, .window-page .visual-section .title p:last-child, .apfelwindow-page .visual-section .title p:last-child {margin-top:1.5rem;transform:translateX(.25rem);font-size: 1.2rem;line-height: 2rem;letter-spacing: -0.02em;font-weight: 400;}
+.shop-list .visual-section .text {padding-left:5%;margin-top:1.5rem;transform:translateX(10px)}
+@media (max-width: 1024px) {
+    .visual-section {margin:11.25rem 0}
+    .visual-section .en-title * {font-size:clamp(1rem, 13.5vw, 3.25rem);}
+    .visual-section .img-cont > img {object-position:left;}
+    .visual-section .mo-only {display:inline-block;}
+    .visual-section .pc-only {display:none;}
+    .shop-list .visual-section,.shop-search .visual-section, .window-page .visual-section, .apfelwindow-page .visual-section {margin-bottom:6.25rem;height:100vh;}
+    .shop-list .visual-section .title p:last-child,.shop-search .visual-section .title p:last-child, .window-page .visual-section .title p:last-child, .apfelwindow-page .visual-section .title p:last-child {margin-top:10px;transform:unset;font-size:1.125rem;}
+    .shop-list .visual-section .text {margin-top:0.625rem;transform:unset;}
+}
+</style>
+<section class="visual-section">
+    <div class="title en-title">
+        <p>Bey<span style="font-family: the-seasons;">o</span>nd</p>
+<p><span style="font-family: the-seasons;">windows</span></p>    </div>  
+    <div class="img-cont" style="background-image: url('http://www.ylchem.co.kr/data/ebcontents/eb4_basic/img/96d941a62f5281196c4c0c5697b5817b.jpg'); background-position:left;">
+                    <div class="glass-item pc-only" style="background-image: url(&quot;http://www.ylchem.co.kr/data/ebcontents/eb4_basic/img/96d941a62f5281196c4c0c5697b5817b.jpg&quot;); background-position: 0% center; opacity: 1; visibility: inherit;"></div>
+                    <div class="glass-item pc-only" style="background-image: url(&quot;http://www.ylchem.co.kr/data/ebcontents/eb4_basic/img/96d941a62f5281196c4c0c5697b5817b.jpg&quot;); background-position: 6.25% center; opacity: 1; visibility: inherit;"></div>
+                    <div class="glass-item pc-only" style="background-image: url(&quot;http://www.ylchem.co.kr/data/ebcontents/eb4_basic/img/96d941a62f5281196c4c0c5697b5817b.jpg&quot;); background-position: 12.5% center; opacity: 1; visibility: inherit;"></div>
+                    <div class="glass-item pc-only" style="background-image: url(&quot;http://www.ylchem.co.kr/data/ebcontents/eb4_basic/img/96d941a62f5281196c4c0c5697b5817b.jpg&quot;); background-position: 18.75% center; opacity: 1; visibility: inherit;"></div>
+                    <div class="glass-item pc-only" style="background-image: url(&quot;http://www.ylchem.co.kr/data/ebcontents/eb4_basic/img/96d941a62f5281196c4c0c5697b5817b.jpg&quot;); background-position: 25% center; opacity: 1; visibility: inherit;"></div>
+                    <div class="glass-item pc-only" style="background-image: url(&quot;http://www.ylchem.co.kr/data/ebcontents/eb4_basic/img/96d941a62f5281196c4c0c5697b5817b.jpg&quot;); background-position: 31.25% center; opacity: 1; visibility: inherit;"></div>
+                    <div class="glass-item pc-only" style="background-image: url(&quot;http://www.ylchem.co.kr/data/ebcontents/eb4_basic/img/96d941a62f5281196c4c0c5697b5817b.jpg&quot;); background-position: 37.5% center; opacity: 1; visibility: inherit;"></div>
+                    <div class="glass-item pc-only" style="background-image: url(&quot;http://www.ylchem.co.kr/data/ebcontents/eb4_basic/img/96d941a62f5281196c4c0c5697b5817b.jpg&quot;); background-position: 43.75% center; opacity: 1; visibility: inherit;"></div>
+                    <div class="glass-item pc-only" style="background-image: url(&quot;http://www.ylchem.co.kr/data/ebcontents/eb4_basic/img/96d941a62f5281196c4c0c5697b5817b.jpg&quot;); background-position: 50% center; opacity: 1; visibility: inherit;"></div>
+                    <div class="glass-item pc-only" style="background-image: url(&quot;http://www.ylchem.co.kr/data/ebcontents/eb4_basic/img/96d941a62f5281196c4c0c5697b5817b.jpg&quot;); background-position: 56.25% center; opacity: 1; visibility: inherit;"></div>
+                    <div class="glass-item pc-only" style="background-image: url(&quot;http://www.ylchem.co.kr/data/ebcontents/eb4_basic/img/96d941a62f5281196c4c0c5697b5817b.jpg&quot;); background-position: 62.5% center; opacity: 1; visibility: inherit;"></div>
+                    <div class="glass-item pc-only" style="background-image: url(&quot;http://www.ylchem.co.kr/data/ebcontents/eb4_basic/img/96d941a62f5281196c4c0c5697b5817b.jpg&quot;); background-position: 68.75% center; opacity: 1; visibility: inherit;"></div>
+                    <div class="glass-item pc-only" style="background-image: url(&quot;http://www.ylchem.co.kr/data/ebcontents/eb4_basic/img/96d941a62f5281196c4c0c5697b5817b.jpg&quot;); background-position: 75% center; opacity: 1; visibility: inherit;"></div>
+                    <div class="glass-item pc-only" style="background-image: url(&quot;http://www.ylchem.co.kr/data/ebcontents/eb4_basic/img/96d941a62f5281196c4c0c5697b5817b.jpg&quot;); background-position: 81.25% center; opacity: 1; visibility: inherit;"></div>
+                    <div class="glass-item pc-only" style="background-image: url(&quot;http://www.ylchem.co.kr/data/ebcontents/eb4_basic/img/96d941a62f5281196c4c0c5697b5817b.jpg&quot;); background-position: 87.5% center; opacity: 1; visibility: inherit;"></div>
+                <div class="glass-item pc-only" style="background-image: url(&quot;http://www.ylchem.co.kr/data/ebcontents/eb4_basic/img/96d941a62f5281196c4c0c5697b5817b.jpg&quot;); background-position: right 0px center; opacity: 1; visibility: inherit;"></div>
+
+                    <div class="glass-item mo-only" style="background-image: url('http://www.ylchem.co.kr/data/ebcontents/eb4_basic/img/96d941a62f5281196c4c0c5697b5817b.jpg'); background-position: 0%;"></div>
+                    <div class="glass-item mo-only" style="background-image: url('http://www.ylchem.co.kr/data/ebcontents/eb4_basic/img/96d941a62f5281196c4c0c5697b5817b.jpg'); background-position: 7%;"></div>
+                    <div class="glass-item mo-only" style="background-image: url('http://www.ylchem.co.kr/data/ebcontents/eb4_basic/img/96d941a62f5281196c4c0c5697b5817b.jpg'); background-position: 14%;"></div>
+                    <div class="glass-item mo-only" style="background-image: url('http://www.ylchem.co.kr/data/ebcontents/eb4_basic/img/96d941a62f5281196c4c0c5697b5817b.jpg'); background-position: 21%;"></div>
+                    <div class="glass-item mo-only" style="background-image: url('http://www.ylchem.co.kr/data/ebcontents/eb4_basic/img/96d941a62f5281196c4c0c5697b5817b.jpg'); background-position: 28%;"></div>
+            </div>
+    <p class="text title-2-pre">/<br>
+we envision the essence of space. Where your everyday moments unfold, our windows remain.</p>
+       
+</section>
+<script>
+$(function() {
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.utils.toArray(".visual-section").forEach((section) => {
+        ScrollTrigger.matchMedia({
+            "(min-width: 1025px)": function() {
+                gsap.fromTo(section.querySelectorAll(".glass-item.pc-only"),
+                    {autoAlpha:1},
+                    {autoAlpha:0, stagger:0.2, duration:1, scrollTrigger:{trigger:section, start:"top 10%"}}
+                );
+            },
+            "(max-width: 1024px)": function() {
+                gsap.fromTo(section.querySelectorAll(".glass-item.mo-only"),
+                    {autoAlpha:1},
+                    {autoAlpha:0, stagger:0.2, duration:1, scrollTrigger:{trigger:section, start:"top 10%"}}
+                );
+            }
+        });
+    });
+});
+</script>    <section class="contact-section">
+        <div class="mix-title-cont mix-title">
+            <div class="en-title"><p>
+   <span style="font-family: Satoshi;">c<span style="font-family: the-seasons;">o</span>ntact</span>
+</p></div>
+            <span class="title-2-pre">문의</span>
+              
+        </div>
+        <div class="img-cont">
+               
+             
+            <a href="https://www.yl.co.kr/remodelConsult" target="_blank">
+                <img src="http://www.ylchem.co.kr/data/ebcontents/eb4_basic/img/9231c1bc2131a6649653364e9642093c.jpg" alt="영림 리모델링 상담">
+            <div class="overlay"><p class="button-pre">리모델링 상담 신청하기<i class="arrow-r-icon"></i></p></div>
+            </a>
+            <a href="/showroom" target="_self">
+                <img src="http://www.ylchem.co.kr/data/ebcontents/eb4_basic/img/06b0189bbc6f2e2e3552d4557cf52db3.jpg" alt="영림 쇼룸">
+            <div class="overlay"><p class="button-pre">쇼룸 보러가기<i class="arrow-r-icon"></i></p></div>
+            </a>
+        </div>
+</section>
+
+  
+</div>
+<div class="modal fade admin-iframe-modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl" style="display: flex;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title f-w-700"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            <iframe id="modal-iframe" width="100%" frameborder="0"></iframe>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-e btn-e-lg btn-e-dark" data-bs-dismiss="modal">닫기<i class="fas fa-times m-l-5"></i></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function eb_modal(href, title) {
+    $('.admin-iframe-modal').modal('show').on('hidden.bs.modal', function () {
+        $("#modal-iframe").attr("src", "");
+        $(".modal-title").text("");
+        $('html').css({overflow: ''});
+    });
+    $('.admin-iframe-modal').modal('show').on('shown.bs.modal', function () {
+        $("#modal-iframe").attr("src", href);
+        $('#modal-iframe').height(parseInt($(window).height() * 0.85));
+        $(".modal-title").text(title);
+        $('html').css({overflow: 'hidden'});
+    });
+    return false;
+}
+
+window.closeModal = function(){
+    $('.admin-iframe-modal').modal('hide');
+};
+
+function close_modal_and_reload() {
+	window.closeModal = function(){
+		$('.admin-iframe-modal').modal('hide');
+	};
+	document.location.reload();
+}
+</script>
+					</main>
+				</div>		</div>	</div>
+		<footer class="footer">
+		<div class="container">
+			<div class="footer-cont-info">
+				<div id="footer-logo" class="banner_or_img">
+                    <img src="http://www.ylchem.co.kr/data/common/59994b576702da6a2aea95907e000daf_xS7qHeJ9_954b13004bd2eeb9998a94e05a968f64b4f2cd93.png" alt="영림화학 로고">
+                 </div>				
+								<div class="footer-info-wrapper row body-2-pre">
+					<div class="footer-info">
+						<div class="body-2-pre">
+							<p class="body-2-pre m-b-4">영림화학(주)</p>
+							<p>인천광역시 서구 북항로 31번길 13</p>
+							<p>
+								<span>대표. 황복현 &nbsp;|&nbsp;</span>
+								<span>사업자등록번호. 137-81-40827</span>
+							</p>
+							<p>
+								<span>Tel. 1551-4455&nbsp;|&nbsp;</span>
+								<span>Fax. 032-578-4455</span>
+							</p>
+						</div>
+						<div class="footer-copyright body-2-pre">
+							<p>고객센터 1551-4455</p>
+							<span>COPYRIGHT (C) 2025 YOUNGLIM CHEMICAL CO., LTD. ALL RIGHTS RESERVED</span>
+						</div>
+					</div>
+					<ul class="col footer-sns">
+						<li><a href="https://www.yl.co.kr" target="_blank"><span>영림 토탈 홈페이지</span><span class="arrow-gray-icon"></span></a></li>
+						<li><a href="http://company.yl.co.kr/ko/" target="_blank"><span>회사소개</span><span class="arrow-gray-icon"></span></a></li>	
+						<li><a href="http://ylfilm.co.kr/" target="_blank"><span>인테리어 필름</span><span class="arrow-gray-icon"></span></a></li>
+						<li><a href="https://www.youtube.com/@younglim" target="_blank"><span>Youtube</span><span class="arrow-gray-icon"></span></a></li>
+						<li><a href="https://blog.naver.com/younglim1984" target="_blank"><span>Blog</span><span class="arrow-gray-icon"></span></a></li>
+						<li><a href="https://instagram.com/younglim_official" target="_blank"><span>Instagram</span><span class="arrow-gray-icon"></span></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</footer>
+	</div>
+
+<!-- 
+
+<div class="modal fade counsel-iframe-modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <iframe id="counsel-iframe" width="100%" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function counsel_modal() {
+    $('.counsel-iframe-modal').modal('show').on('hidden.bs.modal', function() {
+        $("#counsel-iframe").attr("src", "");
+        $('html').css({overflow: ''});
+    });
+    $('.counsel-iframe-modal').modal('show').on('shown.bs.modal', function() {
+        $("#counsel-iframe").attr("src", "http://www.ylchem.co.kr/page/?pid=counsel&wmode=1");
+        $('#counsel-iframe').height(parseInt($(window).height() * 0.7));
+        $('html').css({overflow: 'hidden'});
+    });
+    return false;
+}
+
+function close_counsel_modal() {
+    $('.counsel-iframe-modal').modal('hide');
+}
+</script>
+
+<div class="modal fade itemuse-iframe-modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-fullscreen-sm-down">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title f-s-20r"><i class="fas fa-edit text-gray m-r-7"></i><strong>사용후기 작성하기</strong></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <iframe id="itemuse-iframe" width="100%" frameborder="0"></iframe>
+            </div>
+                    </div>
+    </div>
+</div>
+
+<div class="modal fade itemqa-iframe-modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-fullscreen-sm-down">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title f-s-20r"><i class="fas fa-question-circle text-gray m-r-7"></i><strong>상품문의 작성하기</strong></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <iframe id="itemqa-iframe" width="100%" frameborder="0"></iframe>
+            </div>
+                    </div>
+    </div>
+</div>
+
+<div class="modal fade coupon-iframe-modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title f-s-20r"><i class="fas fa-ticket-alt text-gray m-r-7"></i><strong>쿠폰 내역</strong></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <iframe id="coupon-iframe" width="100%" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function itemuse_modal(href) {
+    $('.itemuse-iframe-modal').modal('show').on('hidden.bs.modal', function() {
+        $("#itemuse-iframe").attr("src", "");
+        $('html').css({overflow: ''});
+    });
+    $('.itemuse-iframe-modal').modal('show').on('shown.bs.modal', function() {
+        $("#itemuse-iframe").attr("src", href);
+                $('#itemuse-iframe').height(parseInt($(window).height() * 0.8));
+                $('html').css({overflow: 'hidden'});
+    });
+    return false;
+}
+
+function itemqa_modal(href) {
+    $('.itemqa-iframe-modal').modal('show').on('hidden.bs.modal', function() {
+        $("#itemqa-iframe").attr("src", "");
+        $('html').css({overflow: ''});
+    });
+    $('.itemqa-iframe-modal').modal('show').on('shown.bs.modal', function() {
+        $("#itemqa-iframe").attr("src", href);
+                $('#itemqa-iframe').height(parseInt($(window).height() * 0.8));
+                $('html').css({overflow: 'hidden'});
+    });
+    return false;
+}
+
+function coupon_modal(href) {
+    $('.coupon-iframe-modal').modal('show').on('hidden.bs.modal', function() {
+        $("#coupon-iframe").attr("src", "");
+        $('html').css({overflow: ''});
+    });
+    $('.coupon-iframe-modal').modal('show').on('shown.bs.modal', function() {
+        $("#coupon-iframe").attr("src", "http://www.ylchem.co.kr/shop/coupon.php");
+        $('#coupon-iframe').height(parseInt($(window).height() * 0.7));
+        $('html').css({overflow: 'hidden'});
+    });
+    return false;
+}
+</script>
+<script>
+// 모달창을 닫은 후 리로드
+function close_modal_and_reload() {
+    close_modal();
+    document.location.reload();
+}
+function close_modal() {
+    $('.modal').modal('hide');
+}
+</script>
+
+<div class="modal fade poll-result-iframe-modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title f-s-20r"><i class="fas fa-chart-bar text-gray m-r-7"></i><strong>투표 결과 보기</strong></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <iframe id="poll-result-iframe" width="100%" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function poll_result(url) {
+        $('.poll-result-iframe-modal').modal('show').on('hidden.bs.modal', function () {
+        $("#poll-result-iframe").attr("src", "");
+        $('html').css({overflow: ''});
+    });
+    $('.poll-result-iframe-modal').modal('show').on('shown.bs.modal', function () {
+        $("#poll-result-iframe").attr("src", url);
+        $('#poll-result-iframe').height(parseInt($(window).height() * 0.7));
+        $('html').css({overflow: 'hidden'});
+    });
+    return false;
+}
+</script>
+
+ -->
+
+
+<script src="http://www.ylchem.co.kr/theme/eb4_basic/js/app.js?ver=2304171"></script>
+
+
+<script>
+$(function(){
+    // 팔로우
+    $("#follow button").click(function(){
+        var action = $(this).attr('value');
+        var target = $(this).attr('name');
+
+        var url = "http://www.ylchem.co.kr/eyoom/core/mypage/follow.ajax.php";
+        $.post(url, {'action':action,'user':target}, function(data) {
+            if(data.result == 'yes') {
+                var botton = $(".follow_"+target);
+                if (action == 'follow') {
+                    botton.removeClass('btn-e-indigo');
+                    botton.addClass('btn-e-dark');
+                    botton.attr('title','친구관계를 해제합니다.');
+                    botton.html('언팔로우 <i class="fas fa-times text-white"></i>');
+                    botton.attr('value','unfollow');
+                    Swal.fire({
+                        title: "알림",
+                        text: '해당 회원을 팔로우하였습니다.',
+                        confirmButtonColor: "#e53935",
+                        icon: "success",
+                        confirmButtonText: "확인"
+                    });
+                }
+                if (action == 'unfollow') {
+                    botton.removeClass('btn-e-dark');
+                    botton.addClass('btn-e-indigo');
+                    botton.attr('title','친구관계를 신청합니다.');
+                    botton.html('팔로우');
+                    botton.attr('value','follow');
+                    Swal.fire({
+                        title: "알림",
+                        text: '해당 회원을 팔로우 해제하였습니다.',
+                        confirmButtonColor: "#e53935",
+                        icon: "success",
+                        confirmButtonText: "확인"
+                    });
+                }
+            } else if (data.result == 'no'){
+                Swal.fire({
+                    title: "알림",
+                    text: '소셜기능을 Off 시켜놓은 회원입니다.',
+                    confirmButtonColor: "#e53935",
+                    icon: "warning",
+                    confirmButtonText: "확인"
+                });
+            }
+        },"json");
+    });
+
+    // 구독
+    $("#subscribe button").click(function(){
+        var action = $(this).attr('value');
+        var target = $(this).attr('name');
+
+        var url = "http://www.ylchem.co.kr/eyoom/core/mypage/subscribe.ajax.php";
+        $.post(url, {'action':action,'user':target}, function(data) {
+            if(data.result == 'yes') {
+                var botton = $(".subscribe_"+target);
+                if (action == 'subscribe') {
+                    botton.removeClass('btn-e-teal');
+                    botton.addClass('btn-e-dark');
+                    botton.attr('title','구독을 해제합니다.');
+                    botton.html('구독해제 <i class="fas fa-times text-white"></i>');
+                    botton.attr('value','unsubscribe');
+                    Swal.fire({
+                        title: "알림",
+                        text: '해당 회원의 글을 구독신청 하였습니다.',
+                        confirmButtonColor: "#e53935",
+                        icon: "success",
+                        confirmButtonText: "확인"
+                    });
+                }
+                if (action == 'unsubscribe') {
+                    botton.removeClass('btn-e-dark');
+                    botton.addClass('btn-e-teal');
+                    botton.attr('title','구독을 신청합니다.');
+                    botton.html('구독하기');
+                    botton.attr('value','subscribe');
+                    Swal.fire({
+                        title: "알림",
+                        text: '해당 회원의 글을 구독해제 하였습니다.',
+                        confirmButtonColor: "#e53935",
+                        icon: "success",
+                        confirmButtonText: "확인"
+                    });
+                }
+            }
+        },"json");
+    });
+
+});
+</script>
+
+
+
+<script src="https://cdn.megadata.co.kr/dist/prod/utilKit.js?adverId=younglim1984" async=""></script><iframe id="itemscout-extension-gtag" src="https://pixel.itemscout.io" scrolling="no" style="
+      width: 1px;
+      height: 1px;
+      border: none;
+      margin: 0;
+      position: absolute;
+      top:0;
+      left:0;
+    "></iframe><div id="its-image-search-container"></div><div id="its-image-crop-container"></div></body>
