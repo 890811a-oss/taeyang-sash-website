@@ -18,26 +18,27 @@ const GUIDES = [
 export default function Guide() {
   return (
     <div className="w-full bg-white pb-24">
-      <div className="bg-gray-900 py-16 md:py-20">
+      <div className="bg-white py-20 md:py-32 border-b border-gray-100">
         <div className="mx-auto max-w-[1440px] px-5 lg:px-12 text-center">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 md:mb-6 tracking-tight">창호 가이드</h1>
-          <p className="text-gray-400 text-[15px] md:text-lg font-light px-4 break-keep">
+          <span className="block text-primary text-xs font-semibold tracking-[0.2em] mb-4">GUIDE</span>
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-medium text-gray-900 mb-6 tracking-tight">창호 가이드</h1>
+          <p className="text-gray-500 text-[15px] md:text-lg font-light px-4 break-keep">
             어렵게 느껴지는 샷시 교체, 태양산업이 알기 쉽게 설명해 드립니다.
           </p>
         </div>
       </div>
 
-      <div className="mx-auto max-w-[1440px] px-5 lg:px-12 py-12 md:py-16">
+      <div className="mx-auto max-w-[1440px] px-5 lg:px-12 py-16 md:py-24">
         
         {/* Featured Guide */}
-        <div className="mb-12 md:mb-20">
-          <div className="relative aspect-square md:aspect-[21/9] overflow-hidden group cursor-pointer bg-gray-900">
-            <img src={windowBalcony} alt="Featured" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-80" />
-            <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/40 to-transparent" />
-            <div className="absolute bottom-6 left-6 right-6 md:bottom-16 md:left-16 md:right-10">
-              <span className="text-white border border-white/50 px-3 py-1 text-xs md:text-sm font-medium mb-3 md:mb-4 inline-block">필독 가이드</span>
-              <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white mb-4 md:mb-4 leading-tight break-keep">우리 집 샷시 수명은 몇 년?<br className="hidden sm:block"/>교체 타이밍 확인하는 방법</h2>
-              <div className="flex items-center text-primary font-bold hover:text-white transition-colors text-[14px] md:text-[16px]">
+        <div className="mb-16 md:mb-24">
+          <div className="relative aspect-square md:aspect-[21/9] overflow-hidden group cursor-pointer bg-black">
+            <img src={windowBalcony} alt="Featured" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-50" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
+            <div className="absolute bottom-8 left-8 right-8 md:bottom-16 md:left-16 md:right-16">
+              <span className="text-white border border-white/40 px-3 py-1.5 text-xs md:text-sm font-medium mb-4 md:mb-6 inline-block">필독 가이드</span>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium text-white mb-6 leading-[1.2] break-keep">우리 집 샷시 수명은 몇 년?<br className="hidden sm:block"/>교체 타이밍 확인하는 방법</h2>
+              <div className="flex items-center text-white font-medium hover:text-primary transition-colors text-[15px] md:text-base">
                 자세히 보기 <ChevronRight className="w-4 h-4 md:w-5 md:h-5 ml-1" />
               </div>
             </div>
@@ -45,21 +46,21 @@ export default function Guide() {
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 gap-y-12 md:gap-y-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12">
           {GUIDES.map((guide, i) => (
             <Link key={i} href="#" className="group">
-              <div className="overflow-hidden aspect-[4/3] mb-4 md:mb-6 relative border border-gray-100">
+              <div className="overflow-hidden aspect-[4/3] mb-5 relative bg-gray-50">
                 <img 
                   src={guide.img} 
                   alt={guide.title} 
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                 />
               </div>
-              <div className="flex justify-between items-center mb-2 md:mb-3">
-                <span className="text-[12px] md:text-[13px] font-bold text-primary tracking-wider">{guide.category}</span>
-                <span className="text-[12px] md:text-[13px] text-gray-400">{guide.date}</span>
+              <div className="flex justify-between items-center mb-3">
+                <span className="text-[12px] md:text-[13px] font-semibold text-primary tracking-wider uppercase">{guide.category}</span>
+                <span className="text-[12px] md:text-[13px] text-gray-400 font-light">{guide.date}</span>
               </div>
-              <h3 className="text-lg md:text-xl font-bold text-gray-900 group-hover:text-primary transition-colors line-clamp-2 leading-snug break-keep">
+              <h3 className="text-xl md:text-2xl font-medium text-gray-900 group-hover:text-primary transition-colors line-clamp-2 leading-snug break-keep">
                 {guide.title}
               </h3>
             </Link>

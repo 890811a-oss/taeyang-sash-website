@@ -59,30 +59,31 @@ export default function Contact() {
   }
 
   return (
-    <div className="w-full bg-[#f8f8f8] min-h-[calc(100vh-64px)] md:min-h-[calc(100vh-80px)] pt-10 md:pt-12 pb-16 md:pb-24">
-      <div className="mx-auto max-w-[800px] px-5">
+    <div className="w-full bg-white min-h-[calc(100vh-64px)] md:min-h-[calc(100vh-80px)] pt-16 md:pt-24 pb-20 md:pb-32">
+      <div className="mx-auto max-w-[900px] px-5">
         
-        <div className="text-center mb-8 md:mb-12">
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3 md:mb-4 tracking-tight">무료견적신청</h1>
+        <div className="text-center mb-12 md:mb-16">
+          <span className="block text-primary text-xs font-semibold tracking-[0.2em] mb-4">CONTACT</span>
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-medium text-gray-900 mb-6 tracking-tight">무료견적신청</h1>
           <p className="text-gray-500 text-[15px] md:text-lg font-light break-keep">
             창호 교체 고민, 태양산업 전문가와 상의하세요.<br className="hidden sm:block" />
             레이저 정밀 실측부터 투명한 견적까지 1:1 맞춤 솔루션을 제안해 드립니다.
           </p>
         </div>
 
-        <div className="bg-white p-6 sm:p-8 md:p-12 border border-gray-200 shadow-sm">
+        <div className="bg-gray-50 p-8 sm:p-10 md:p-16">
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 md:space-y-8">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 md:space-y-10">
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
                 <FormField
                   control={form.control}
                   name="name"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-gray-900 font-bold text-[14px] md:text-[15px]">이름 *</FormLabel>
+                      <FormLabel className="text-gray-600 font-medium text-[13px] tracking-wider uppercase mb-2">이름 *</FormLabel>
                       <FormControl>
-                        <Input placeholder="홍길동" className="rounded-none border-gray-300 h-12 md:h-14 focus-visible:ring-gray-900 text-[15px]" {...field} />
+                        <Input placeholder="홍길동" className="rounded-none border-0 border-b-2 border-gray-200 h-14 focus-visible:ring-0 focus-visible:border-gray-900 text-lg bg-transparent px-0 placeholder:text-gray-300" {...field} />
                       </FormControl>
                       <FormMessage className="text-primary font-normal text-[13px]" />
                     </FormItem>
@@ -94,9 +95,9 @@ export default function Contact() {
                   name="phone"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-gray-900 font-bold text-[14px] md:text-[15px]">연락처 *</FormLabel>
+                      <FormLabel className="text-gray-600 font-medium text-[13px] tracking-wider uppercase mb-2">연락처 *</FormLabel>
                       <FormControl>
-                        <Input type="tel" placeholder="010-0000-0000" className="rounded-none border-gray-300 h-12 md:h-14 focus-visible:ring-gray-900 text-[15px]" {...field} />
+                        <Input type="tel" placeholder="010-0000-0000" className="rounded-none border-0 border-b-2 border-gray-200 h-14 focus-visible:ring-0 focus-visible:border-gray-900 text-lg bg-transparent px-0 placeholder:text-gray-300" {...field} />
                       </FormControl>
                       <FormMessage className="text-primary font-normal text-[13px]" />
                     </FormItem>
@@ -109,10 +110,10 @@ export default function Contact() {
                 name="type"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-gray-900 font-bold text-[14px] md:text-[15px]">시공 분야 *</FormLabel>
+                    <FormLabel className="text-gray-600 font-medium text-[13px] tracking-wider uppercase mb-2">시공 분야 *</FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
-                        <SelectTrigger className="rounded-none border-gray-300 h-12 md:h-14 focus-visible:ring-gray-900 text-[15px]">
+                        <SelectTrigger className="rounded-none border-0 border-b-2 border-gray-200 h-14 focus-visible:ring-0 focus-visible:border-gray-900 text-lg bg-transparent px-0 text-gray-900">
                           <SelectValue placeholder="시공 분야를 선택해주세요" />
                         </SelectTrigger>
                       </FormControl>
@@ -134,9 +135,9 @@ export default function Contact() {
                 name="address"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-gray-900 font-bold text-[14px] md:text-[15px]">시공 주소 *</FormLabel>
+                    <FormLabel className="text-gray-600 font-medium text-[13px] tracking-wider uppercase mb-2">시공 주소 *</FormLabel>
                     <FormControl>
-                      <Input placeholder="예) 서울시 강남구 XX아파트" className="rounded-none border-gray-300 h-12 md:h-14 focus-visible:ring-gray-900 text-[15px]" {...field} />
+                      <Input placeholder="예) 서울시 강남구 XX아파트" className="rounded-none border-0 border-b-2 border-gray-200 h-14 focus-visible:ring-0 focus-visible:border-gray-900 text-lg bg-transparent px-0 placeholder:text-gray-300" {...field} />
                     </FormControl>
                     <FormMessage className="text-primary font-normal text-[13px]" />
                   </FormItem>
@@ -148,11 +149,11 @@ export default function Contact() {
                 name="message"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-gray-900 font-bold text-[14px] md:text-[15px]">상담 내용 (선택)</FormLabel>
+                    <FormLabel className="text-gray-600 font-medium text-[13px] tracking-wider uppercase mb-2">상담 내용 (선택)</FormLabel>
                     <FormControl>
                       <Textarea 
                         placeholder="거주 중이신지, 인테리어 공사와 함께 진행하시는지 등 특이사항을 적어주시면 더 정확한 상담이 가능합니다." 
-                        className="rounded-none border-gray-300 min-h-[120px] focus-visible:ring-gray-900 resize-none text-[15px]" 
+                        className="rounded-none border-0 border-b-2 border-gray-200 min-h-[140px] focus-visible:ring-0 focus-visible:border-gray-900 resize-none text-lg bg-transparent p-0 placeholder:text-gray-300 leading-relaxed" 
                         {...field} 
                       />
                     </FormControl>
@@ -161,7 +162,7 @@ export default function Contact() {
                 )}
               />
 
-              <div className="pt-4 border-t border-gray-100">
+              <div className="pt-8 md:pt-10">
                 <FormField
                   control={form.control}
                   name="agree"
@@ -171,14 +172,14 @@ export default function Contact() {
                         <Checkbox
                           checked={field.value}
                           onCheckedChange={field.onChange}
-                          className="rounded-none border-gray-300 mt-1 data-[state=checked]:bg-gray-900 data-[state=checked]:border-gray-900"
+                          className="rounded-none border-gray-300 mt-1 data-[state=checked]:bg-gray-900 data-[state=checked]:border-gray-900 w-5 h-5"
                         />
                       </FormControl>
-                      <div className="space-y-1.5 leading-none pt-0.5">
+                      <div className="space-y-2 leading-none pt-0.5">
                         <FormLabel className="text-gray-700 font-normal cursor-pointer text-[14px] md:text-[15px]">
                           개인정보 수집 및 이용에 동의합니다. *
                         </FormLabel>
-                        <p className="text-[12px] md:text-[13px] text-gray-400 pt-1 leading-relaxed">
+                        <p className="text-[12px] md:text-[13px] text-gray-400 leading-relaxed">
                           수집목적: 창호 교체 상담 및 견적 안내<br />
                           수집항목: 이름, 연락처, 주소<br />
                           보유기간: 상담 완료 후 1년
@@ -189,12 +190,12 @@ export default function Contact() {
                 />
               </div>
 
-              <div className="pt-4 md:pt-6">
+              <div className="pt-6 md:pt-8">
                 <Button 
                   type="submit" 
-                  className="w-full h-14 md:h-16 rounded-none bg-primary hover:bg-primary/90 text-white text-[16px] md:text-lg font-bold"
+                  className="w-full h-14 md:h-16 rounded-none bg-gray-900 hover:bg-black text-white text-[16px] md:text-lg font-medium transition-colors"
                 >
-                  견적 신청 완료
+                  상담 신청 완료하기
                 </Button>
               </div>
             </form>

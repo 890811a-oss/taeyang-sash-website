@@ -37,24 +37,25 @@ const PRODUCTS = {
 export default function Products() {
   return (
     <div className="w-full bg-white pb-24">
-      <div className="bg-gray-900 py-16 md:py-20">
+      <div className="bg-white py-20 md:py-32 border-b border-gray-100">
         <div className="mx-auto max-w-[1440px] px-5 lg:px-12 text-center">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 md:mb-6 tracking-tight">제품보기</h1>
-          <p className="text-gray-400 text-[15px] md:text-lg font-light break-keep px-4">
-            에너지 효율 1등급, 태양산업의 독보적인 창호 라인업
+          <span className="block text-primary text-xs font-semibold tracking-[0.2em] mb-4">PRODUCTS</span>
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-medium text-gray-900 mb-6 tracking-tight">태양산업 라인업</h1>
+          <p className="text-gray-500 text-[15px] md:text-lg font-light break-keep px-4">
+            에너지 효율 1등급, 독보적인 창호 솔루션
           </p>
         </div>
       </div>
 
-      <div className="mx-auto max-w-[1440px] px-5 lg:px-12 py-12 md:py-16">
+      <div className="mx-auto max-w-[1440px] px-5 lg:px-12 py-16 md:py-24">
         <Tabs defaultValue="balcony" className="w-full">
-          <div className="flex justify-center mb-10 md:mb-16 -mx-5 px-5 md:mx-0 md:px-0 overflow-x-auto scrollbar-hide">
-            <TabsList className="bg-transparent h-auto p-0 flex flex-nowrap md:flex-wrap justify-start md:justify-center gap-2 md:gap-12 border-b border-gray-200 w-full min-w-max md:min-w-0 rounded-none">
+          <div className="flex justify-center mb-12 md:mb-20 -mx-5 px-5 md:mx-0 md:px-0 overflow-x-auto scrollbar-hide">
+            <TabsList className="bg-transparent h-auto p-0 flex flex-nowrap md:flex-wrap justify-start md:justify-center gap-2 md:gap-12 border-b border-gray-100 w-full min-w-max md:min-w-0 rounded-none">
               {CATEGORIES.map(cat => (
                 <TabsTrigger 
                   key={cat.id} 
                   value={cat.id}
-                  className="rounded-none bg-transparent data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:border-b-2 data-[state=active]:border-gray-900 pb-3 md:pb-4 px-2 md:px-4 text-[15px] md:text-lg text-gray-500 data-[state=active]:text-gray-900 font-bold transition-all whitespace-nowrap"
+                  className="rounded-none bg-transparent data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:border-b-2 data-[state=active]:border-gray-900 pb-4 px-2 md:px-4 text-[14px] md:text-base text-gray-500 data-[state=active]:text-gray-900 font-medium transition-all whitespace-nowrap"
                 >
                   {cat.label}
                 </TabsTrigger>
@@ -64,23 +65,23 @@ export default function Products() {
 
           {CATEGORIES.map(cat => (
             <TabsContent key={cat.id} value={cat.id} className="animate-in fade-in duration-500">
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12">
                 {PRODUCTS[cat.id as keyof typeof PRODUCTS].map((prod, i) => (
                   <Link key={i} href="#" className="group flex flex-col">
-                    <div className="bg-[#f8f8f8] aspect-[4/3] flex justify-center items-center mb-4 md:mb-6 overflow-hidden relative border border-gray-100">
+                    <div className="bg-gray-50 aspect-[4/3] flex justify-center items-center mb-6 overflow-hidden relative">
                       {prod.isNew && (
-                        <div className="absolute top-3 left-3 md:top-4 md:left-4 z-10 bg-primary text-white text-[11px] md:text-[12px] font-bold px-2 md:px-3 py-1 tracking-wider">
+                        <div className="absolute top-4 left-4 z-10 bg-primary text-white text-[11px] font-semibold px-3 py-1.5 tracking-wider">
                           NEW
                         </div>
                       )}
                       <img 
                         src={prod.img} 
                         alt={prod.name} 
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                       />
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-1 md:mb-2 group-hover:text-primary transition-colors">{prod.name}</h3>
+                      <h3 className="text-xl md:text-2xl font-medium text-gray-900 mb-3 group-hover:text-primary transition-colors">{prod.name}</h3>
                       <p className="text-[14px] md:text-[15px] text-gray-500 font-light leading-relaxed break-keep">{prod.desc}</p>
                     </div>
                   </Link>
