@@ -98,7 +98,7 @@ export function Navbar() {
 
         {/* Mobile Menu Full Overlay */}
         {mobileMenuOpen && (
-          <div className="lg:hidden fixed inset-x-0 top-[64px] bottom-0 bg-white z-40 overflow-y-auto animate-in fade-in duration-200">
+          <div className="lg:hidden fixed inset-x-0 top-16 md:top-20 bottom-0 bg-white z-40 overflow-y-auto animate-in fade-in duration-200">
             <nav className="flex flex-col px-6 py-8">
               {NAV_LINKS.map((link) => (
                 <Link

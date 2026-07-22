@@ -172,6 +172,7 @@ export default function Home() {
                       name="name"
                       render={({ field }) => (
                         <FormItem>
+                          <FormLabel className="sr-only">이름</FormLabel>
                           <FormControl>
                             <Input placeholder="이름 (예: 홍길동)" className="rounded-none h-12 md:h-14 border-gray-300 focus-visible:ring-gray-900 text-[15px]" {...field} />
                           </FormControl>
@@ -184,6 +185,7 @@ export default function Home() {
                       name="phone"
                       render={({ field }) => (
                         <FormItem>
+                          <FormLabel className="sr-only">연락처</FormLabel>
                           <FormControl>
                             <Input type="tel" placeholder="연락처 (- 없이 입력)" className="rounded-none h-12 md:h-14 border-gray-300 focus-visible:ring-gray-900 text-[15px]" {...field} />
                           </FormControl>
@@ -198,6 +200,7 @@ export default function Home() {
                     name="region"
                     render={({ field }) => (
                       <FormItem>
+                        <FormLabel className="sr-only">시공 지역</FormLabel>
                         <FormControl>
                           <Input placeholder="시공 지역 (예: 서울시 강남구)" className="rounded-none h-12 md:h-14 border-gray-300 focus-visible:ring-gray-900 text-[15px]" {...field} />
                         </FormControl>
@@ -211,6 +214,7 @@ export default function Home() {
                     name="type"
                     render={({ field }) => (
                       <FormItem>
+                        <FormLabel className="sr-only">시공 범위</FormLabel>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                           <FormControl>
                             <SelectTrigger className="rounded-none h-12 md:h-14 border-gray-300 focus-visible:ring-gray-900 text-gray-500 text-[15px]">
