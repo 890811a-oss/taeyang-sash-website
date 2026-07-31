@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useToast } from '@/hooks/use-toast';
+import { submitConsultation } from '@/lib/web3forms';
 import { Button } from '@/components/ui/button';
 import {
   Form,
@@ -36,6 +37,7 @@ const contactSchema = z.object({
 
 export default function Contact() {
   const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   
   const form = useForm<z.infer<typeof contactSchema>>({
     resolver: zodResolver(contactSchema),
@@ -49,13 +51,31 @@ export default function Contact() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof contactSchema>) {
-    toast({
-      title: "무료 견적 신청이 완료되었습니다.",
-      description: "태양산업 전문 상담사가 곧 연락드리겠습니다.",
-      className: "rounded-none border-gray-900 bg-white",
-    });
-    form.reset();
+  async function onSubmit(values: z.infer<typeof contactSchema>) {
+    setIsSubmitting(true);
+    try {
+      await submitConsultation({
+        name: values.name,
+        phone: values.phone,
+        type: values.type,
+        address: values.address,
+        message: values.message,
+      });
+      toast({
+        title: "무료 견적 신청이 완료되었습니다.",
+        description: "태양산업 전문 상담사가 곧 연락드리겠습니다.",
+        className: "rounded-none border-gray-900 bg-white",
+      });
+      form.reset();
+    } catch (err) {
+      toast({
+        title: "전송에 실패했습니다.",
+        description: err instanceof Error ? err.message : "잠시 후 다시 시도하거나 전화로 문의해주세요.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -193,9 +213,10 @@ export default function Contact() {
               <div className="pt-6 md:pt-8">
                 <Button 
                   type="submit" 
-                  className="w-full h-14 md:h-16 rounded-none bg-gray-900 hover:bg-black text-white text-[16px] md:text-lg font-medium transition-colors"
+                  disabled={isSubmitting}
+                  className="w-full h-14 md:h-16 rounded-none bg-gray-900 hover:bg-black text-white text-[16px] md:text-lg font-medium transition-colors disabled:opacity-60"
                 >
-                  상담 신청 완료하기
+                  {isSubmitting ? '신청 중...' : '상담 신청 완료하기'}
                 </Button>
               </div>
             </form>

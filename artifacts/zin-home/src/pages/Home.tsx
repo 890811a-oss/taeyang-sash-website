@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import { submitConsultation } from '@/lib/web3forms';
 import { Link } from 'wouter';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -49,13 +50,32 @@ export default function Home() {
     defaultValues: { name: '', phone: '', region: '', type: '', agree: false },
   });
 
-  function onSubmit(values: z.infer<typeof quoteSchema>) {
-    toast({
-      title: "견적 신청이 접수되었습니다.",
-      description: "담당자가 확인 후 빠르게 연락드리겠습니다.",
-      className: "rounded-none border-gray-900 bg-white",
-    });
-    form.reset();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  async function onSubmit(values: z.infer<typeof quoteSchema>) {
+    setIsSubmitting(true);
+    try {
+      await submitConsultation({
+        name: values.name,
+        phone: values.phone,
+        type: values.type,
+        region: values.region,
+      });
+      toast({
+        title: "견적 신청이 접수되었습니다.",
+        description: "담당자가 확인 후 빠르게 연락드리겠습니다.",
+        className: "rounded-none border-gray-900 bg-white",
+      });
+      form.reset();
+    } catch (err) {
+      toast({
+        title: "전송에 실패했습니다.",
+        description: err instanceof Error ? err.message : "잠시 후 다시 시도하거나 전화로 문의해주세요.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   const [emblaRef, emblaApi] = useEmblaCarousel({ 
@@ -422,8 +442,8 @@ export default function Home() {
                     )}
                   />
 
-                  <Button type="submit" className="w-full sm:w-auto h-14 px-10 rounded-none bg-gray-900 hover:bg-black text-white text-[16px] font-medium transition-colors">
-                    상담 신청하기
+                  <Button type="submit" disabled={isSubmitting} className="w-full sm:w-auto h-14 px-10 rounded-none bg-gray-900 hover:bg-black text-white text-[16px] font-medium transition-colors disabled:opacity-60">
+                    {isSubmitting ? '신청 중...' : '상담 신청하기'}
                   </Button>
                 </div>
               </form>
