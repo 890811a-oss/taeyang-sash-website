@@ -4,7 +4,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 
 const STORES = [
-  { name: '태양산업 강남 본점', address: '서울 강남구 테헤란로 123', phone: '1588-0000', type: '본사직영' },
+  { name: '태양산업 강남 본점', address: '서울 강남구 테헤란로 123', phone: '전화 문의', type: '본사직영' },
   { name: '태양산업 서초 전시장', address: '서울 서초구 서초대로 333', phone: '02-580-2000', type: '전시장' },
   { name: '태양산업 송파 대리점', address: '서울 송파구 올림픽로 444', phone: '02-410-3000', type: '대리점' },
   { name: '태양산업 분당 대리점', address: '경기 성남시 분당구 정자일로 222', phone: '031-710-4000', type: '대리점' },

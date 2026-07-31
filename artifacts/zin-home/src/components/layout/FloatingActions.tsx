@@ -7,7 +7,7 @@ export function FloatingActions() {
     <div className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-40 flex flex-col gap-2 md:gap-3">
       {/* Kakao Talk */}
       <a 
-        href="https://pf.kakao.com" 
+        href="https://open.kakao.com/o/sBZKFAGi" 
         target="_blank" 
         rel="noopener noreferrer"
         className="group relative flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-full shadow-lg transition-transform hover:-translate-y-1"
@@ -22,13 +22,13 @@ export function FloatingActions() {
 
       {/* Phone */}
       <a 
-        href="tel:1588-0000"
+        href="tel:010-3996-9749"
         className="group relative flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-full bg-white border border-gray-200 text-gray-800 shadow-lg transition-transform hover:-translate-y-1 hover:border-gray-900"
         aria-label="전화 상담"
       >
         <PhoneCall className="w-4 h-4 md:w-5 md:h-5" />
         <span className="hidden md:block absolute right-full mr-4 bg-gray-900 text-white text-[13px] font-medium px-3 py-1.5 rounded-sm whitespace-nowrap opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity">
-          전화 상담 (1588-0000)
+          전화 상담
         </span>
       </a>
 

@@ -15,7 +15,7 @@ const NAV_LINKS = [
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [location, navigate] = useLocation();
+  const [location] = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -72,16 +72,11 @@ export function Navbar() {
 
             {/* Desktop Actions */}
             <div className="hidden lg:flex items-center gap-4 text-gray-800">
-              <div className="flex items-center gap-2 text-primary font-medium text-[15px]">
-                <Phone className="h-4 w-4" />
-                <span>1588-0000</span>
-              </div>
-              <div className="w-[1px] h-3 bg-gray-300 mx-2"></div>
               <Button 
+                asChild
                 className="rounded-none bg-gray-900 hover:bg-black text-white h-10 px-6 font-medium text-[13px]"
-                onClick={() => navigate('/contact')}
               >
-                빠른 견적신청
+                <a href="tel:010-3996-9749">빠른 견적신청</a>
               </Button>
             </div>
 
@@ -113,20 +108,23 @@ export function Navbar() {
               ))}
               
               <div className="mt-10 space-y-6">
-                <div className="flex flex-col items-center justify-center p-6 bg-gray-50 border border-gray-100 text-center">
+                <a
+                  href="tel:010-3996-9749"
+                  className="flex flex-col items-center justify-center p-6 bg-gray-50 border border-gray-100 text-center"
+                >
                   <span className="text-sm text-gray-500 font-medium mb-2">고객센터</span>
-                  <div className="flex items-center gap-2 text-primary font-bold text-2xl mb-1">
+                  <div className="flex items-center gap-2 text-primary font-bold text-xl mb-1">
                     <Phone className="h-5 w-5" />
-                    <a href="tel:1588-0000">1588-0000</a>
+                    <span>전화 상담하기</span>
                   </div>
                   <span className="text-xs text-gray-400">평일 09:00 - 18:00 (주말 휴무)</span>
-                </div>
+                </a>
                 
                 <Button 
+                  asChild
                   className="w-full rounded-none bg-gray-900 hover:bg-black text-white h-14 text-[16px] font-bold"
-                  onClick={() => navigate('/contact')}
                 >
-                  무료 견적신청하기
+                  <a href="tel:010-3996-9749">무료 견적신청하기</a>
                 </Button>
               </div>
             </nav>

@@ -39,7 +39,7 @@ export function Footer() {
           
           <div className="pt-8 md:pt-0 border-t border-gray-200 md:border-0">
             <h4 className="font-medium text-gray-900 mb-4 text-[14px] tracking-wider uppercase">고객센터</h4>
-            <p className="text-2xl md:text-3xl font-medium text-gray-900 mb-3 tracking-tight">1588-0000</p>
+            <a href="tel:010-3996-9749" className="inline-block text-xl md:text-2xl font-medium text-gray-900 mb-3 tracking-tight hover:text-primary transition-colors">전화 상담하기</a>
             <p className="text-[13px] md:text-[14px] text-gray-500 font-light leading-relaxed break-keep">
               상담시간: 평일 09:00 - 18:00<br />
               (주말 및 공휴일 휴무)<br />

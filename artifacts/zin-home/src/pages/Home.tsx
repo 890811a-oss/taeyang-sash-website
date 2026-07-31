@@ -132,7 +132,7 @@ export default function Home() {
                   size="lg"
                   className="bg-transparent border-white/30 text-white hover:bg-white/10 rounded-none h-14 md:h-16 px-8 md:px-10 text-[15px] md:text-[16px] font-medium w-full sm:w-auto transition-colors"
                 >
-                  <a href="tel:1588-0000">상담센터 1588-0000</a>
+                  <a href="tel:010-3996-9749">상담센터 전화연결</a>
                 </Button>
               </div>
             </div>

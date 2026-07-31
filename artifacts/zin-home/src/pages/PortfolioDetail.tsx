@@ -270,10 +270,10 @@ export default function PortfolioDetail() {
               무료 방문견적 신청
             </button>
             <a 
-              href="tel:1588-0000"
+              href="tel:010-3996-9749"
               className="inline-flex items-center justify-center bg-transparent border border-white/30 text-white hover:bg-white/10 h-14 md:h-16 px-10 text-[15px] md:text-[16px] font-medium transition-colors rounded-none"
             >
-              상담센터 1588-0000
+              상담센터 전화연결
             </a>
           </div>
         </div>
