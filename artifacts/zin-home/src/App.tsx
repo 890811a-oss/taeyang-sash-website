@@ -8,6 +8,7 @@ import { Layout } from '@/components/layout/Layout';
 import Home from '@/pages/Home';
 import BrandStory from '@/pages/BrandStory';
 import Portfolio from '@/pages/Portfolio';
+import PortfolioDetail from '@/pages/PortfolioDetail';
 import Guide from '@/pages/Guide';
 import Products from '@/pages/Products';
 import Contact from '@/pages/Contact';
@@ -23,6 +24,7 @@ function Router() {
         <Route path="/" component={Home} />
         <Route path="/brand" component={BrandStory} />
         <Route path="/portfolio" component={Portfolio} />
+        <Route path="/portfolio/:id" component={PortfolioDetail} />
         <Route path="/guide" component={Guide} />
         <Route path="/products" component={Products} />
         <Route path="/contact" component={Contact} />

@@ -29,8 +29,7 @@ import heroVideo from '@assets/hero-video.mp4';
 import windowBalcony from '@assets/generated_images/window-balcony.jpg';
 import windowSystem from '@assets/generated_images/window-system.jpg';
 import windowDouble from '@assets/generated_images/window-double.jpg';
-import windowPort1 from '@assets/generated_images/window-port1.jpg';
-import windowPort2 from '@assets/generated_images/window-port2.jpg';
+import { PORTFOLIOS } from '@/data/portfolioData';
 
 const quoteSchema = z.object({
   name: z.string().min(2, '이름을 정확히 입력해주세요.'),
@@ -118,14 +117,15 @@ export default function Home() {
                 >
                   무료 방문견적 신청
                 </Button>
-                <Button 
-                  variant="outline" 
-                  size="lg"
-                  className="bg-transparent border-white/30 text-white hover:bg-white/10 rounded-none h-14 md:h-16 px-8 md:px-10 text-[15px] md:text-[16px] font-medium w-full sm:w-auto transition-colors"
-                  onClick={() => window.location.href = 'tel:1588-0000'}
-                >
-                  상담센터 1588-0000
-                </Button>
+                <a href="tel:1588-0000">
+                  <Button 
+                    variant="outline" 
+                    size="lg"
+                    className="bg-transparent border-white/30 text-white hover:bg-white/10 rounded-none h-14 md:h-16 px-8 md:px-10 text-[15px] md:text-[16px] font-medium w-full sm:w-auto transition-colors"
+                  >
+                    상담센터 1588-0000
+                  </Button>
+                </a>
               </div>
             </div>
           </div>
@@ -222,9 +222,11 @@ export default function Home() {
           </div>
           
           <div className="mt-16 text-center">
-            <Button variant="link" className="text-gray-900 font-medium text-base hover:text-primary transition-colors" onClick={() => window.location.href = '/products'}>
-              제품 전체보기 <ArrowRight className="w-4 h-4 ml-2" />
-            </Button>
+            <Link href="/products">
+              <Button variant="link" className="text-gray-900 font-medium text-base hover:text-primary transition-colors">
+                제품 전체보기 <ArrowRight className="w-4 h-4 ml-2" />
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -256,12 +258,20 @@ export default function Home() {
           </div>
           
           <div className="w-full lg:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <div className="relative overflow-hidden aspect-[3/4]">
-              <img src={windowPort1} alt="시공사례 1" className="w-full h-full object-cover hover:scale-105 transition-transform duration-1000" />
-            </div>
-            <div className="relative overflow-hidden aspect-[3/4] sm:mt-16">
-              <img src={windowPort2} alt="시공사례 2" className="w-full h-full object-cover hover:scale-105 transition-transform duration-1000" />
-            </div>
+            {PORTFOLIOS.slice(0, 2).map((portfolio, idx) => (
+              <Link 
+                key={portfolio.id}
+                href={`/portfolio/${portfolio.id}`}
+                className={`relative overflow-hidden aspect-[3/4] group cursor-pointer ${idx === 1 ? 'sm:mt-16' : ''}`}
+              >
+                <img 
+                  src={portfolio.thumbnail} 
+                  alt={portfolio.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
+                  loading="lazy"
+                />
+              </Link>
+            ))}
           </div>
         </div>
       </section>

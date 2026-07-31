@@ -2,22 +2,9 @@ import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Filter } from 'lucide-react';
 import { Link } from 'wouter';
-
-import windowPort1 from '@assets/generated_images/window-port1.jpg';
-import windowPort2 from '@assets/generated_images/window-port2.jpg';
-import windowBalcony from '@assets/generated_images/window-balcony.jpg';
-import windowSystem from '@assets/generated_images/window-system.jpg';
+import { PORTFOLIOS } from '@/data/portfolioData';
 
 const CATEGORIES = ['전체', '발코니창', '내창/방창', '시스템창호', '폴딩/터닝도어'];
-
-const PORTFOLIOS = [
-  { id: 1, category: '발코니창', img: windowBalcony, title: '탁 트인 시야, 고단열 발코니창 시공', tags: ['30평대', '아파트'], author: '태양산업 강남점' },
-  { id: 2, category: '시스템창호', img: windowSystem, title: '유럽형 시스템창호로 완성한 거실', tags: ['40평대', '주택'], author: '태양산업 서초점' },
-  { id: 3, category: '내창/방창', img: windowPort1, title: '포근하고 조용한 침실을 위한 이중창', tags: ['20평대', '아파트'], author: '본사 직영팀' },
-  { id: 4, category: '폴딩/터닝도어', img: windowPort2, title: '베란다 확장 대신 선택한 폴딩도어', tags: ['30평대', '아파트'], author: '본사 직영팀' },
-  { id: 5, category: '발코니창', img: windowBalcony, title: '외풍 차단 완벽! 노후 샷시 교체기', tags: ['50평대', '아파트'], author: '태양산업 송파점' },
-  { id: 6, category: '시스템창호', img: windowSystem, title: '단열과 디자인을 모두 잡은 단독주택', tags: ['주택', '신축'], author: '태양산업 프리미엄' },
-];
 
 export default function Portfolio() {
   const [activeCategory, setActiveCategory] = useState('전체');
@@ -66,12 +53,13 @@ export default function Portfolio() {
         {/* Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12">
           {filtered.map((item) => (
-            <Link key={item.id} href={`#`} className="group block cursor-pointer">
+            <Link key={item.id} href={`/portfolio/${item.id}`} className="group block cursor-pointer">
               <div className="relative overflow-hidden aspect-[4/3] mb-5 bg-gray-50">
                 <img 
-                  src={item.img} 
+                  src={item.thumbnail} 
                   alt={item.title} 
                   className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                  loading="lazy"
                 />
               </div>
               <div className="flex flex-wrap gap-2 mb-3">
