@@ -67,7 +67,7 @@ export default function Products() {
             <TabsContent key={cat.id} value={cat.id} className="animate-in fade-in duration-500">
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12">
                 {PRODUCTS[cat.id as keyof typeof PRODUCTS].map((prod, i) => (
-                  <Link key={i} href="#" className="group flex flex-col">
+                  <div key={i} className="group flex flex-col">
                     <div className="bg-gray-50 aspect-[4/3] flex justify-center items-center mb-6 overflow-hidden relative">
                       {prod.isNew && (
                         <div className="absolute top-4 left-4 z-10 bg-primary text-white text-[11px] font-semibold px-3 py-1.5 tracking-wider">
@@ -84,7 +84,7 @@ export default function Products() {
                       <h3 className="text-xl md:text-2xl font-medium text-gray-900 mb-3 group-hover:text-primary transition-colors">{prod.name}</h3>
                       <p className="text-[14px] md:text-[15px] text-gray-500 font-light leading-relaxed break-keep">{prod.desc}</p>
                     </div>
-                  </Link>
+                  </div>
                 ))}
               </div>
             </TabsContent>

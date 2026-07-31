@@ -23,7 +23,7 @@ export function Footer() {
             <ul className="space-y-3">
               <li><Link href="/brand" className="text-[13px] md:text-[14px] hover:text-gray-900 transition-colors font-light">브랜드스토리</Link></li>
               <li><Link href="/portfolio" className="text-[13px] md:text-[14px] hover:text-gray-900 transition-colors font-light">시공실적</Link></li>
-              <li><a href="#" className="text-[13px] md:text-[14px] hover:text-gray-900 transition-colors font-light">오시는 길</a></li>
+              <li><Link href="/stores" className="text-[13px] md:text-[14px] hover:text-gray-900 transition-colors font-light">오시는 길</Link></li>
             </ul>
           </div>
           
@@ -31,8 +31,8 @@ export function Footer() {
             <h4 className="font-medium text-gray-900 mb-5 text-[14px] tracking-wider uppercase">고객지원</h4>
             <ul className="space-y-3">
               <li><Link href="/contact" className="text-[13px] md:text-[14px] hover:text-gray-900 transition-colors font-light">무료견적신청</Link></li>
-              <li><a href="#" className="text-[13px] md:text-[14px] hover:text-gray-900 transition-colors font-light">A/S 접수</a></li>
-              <li><a href="#" className="text-[13px] md:text-[14px] hover:text-gray-900 transition-colors font-light">자주 묻는 질문</a></li>
+              <li><Link href="/contact" className="text-[13px] md:text-[14px] hover:text-gray-900 transition-colors font-light">A/S 접수</Link></li>
+              <li><Link href="/guide" className="text-[13px] md:text-[14px] hover:text-gray-900 transition-colors font-light">자주 묻는 질문</Link></li>
               <li><Link href="/guide" className="text-[13px] md:text-[14px] hover:text-gray-900 transition-colors font-light">창호가이드</Link></li>
             </ul>
           </div>
@@ -50,9 +50,9 @@ export function Footer() {
         
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 md:gap-4">
           <div className="flex flex-wrap gap-x-5 md:gap-x-6 gap-y-2 text-[12px] md:text-[13px]">
-            <a href="#" className="font-medium text-gray-900">개인정보처리방침</a>
-            <a href="#" className="hover:text-gray-900 transition-colors font-light">이용약관</a>
-            <a href="#" className="hover:text-gray-900 transition-colors font-light">이메일무단수집거부</a>
+            <span className="font-medium text-gray-900">개인정보처리방침</span>
+            <span className="font-light">이용약관</span>
+            <span className="font-light">이메일무단수집거부</span>
           </div>
           <div className="text-[11px] md:text-[12px] text-gray-400 font-light text-left lg:text-right leading-relaxed">
             <p className="mb-1">㈜태양산업 | 대표이사: 김태양 | 사업자등록번호: 123-45-67890</p>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams, Link } from 'wouter';
+import { useParams, Link, useLocation } from 'wouter';
 import { ArrowLeft } from 'lucide-react';
 import { PORTFOLIOS } from '@/data/portfolioData';
 import { BeforeAfterSlider } from '@/components/portfolio/BeforeAfterSlider';
@@ -9,6 +9,12 @@ export default function PortfolioDetail() {
   const params = useParams();
   const portfolioId = params.id ? Number(params.id) : null;
   const portfolio = PORTFOLIOS.find(p => p.id === portfolioId);
+  const [, navigate] = useLocation();
+
+  const goToQuoteForm = () => {
+    sessionStorage.setItem('scrollTo', 'quote-form');
+    navigate('/');
+  };
 
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxImages, setLightboxImages] = useState<string[]>([]);
@@ -256,12 +262,13 @@ export default function PortfolioDetail() {
             무료 방문견적으로 우리 집에 꼭 맞는 창호 솔루션을 제안해드립니다.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link 
-              href="/#quote-form"
+            <button
+              type="button"
+              onClick={goToQuoteForm}
               className="inline-flex items-center justify-center bg-white text-gray-900 hover:bg-gray-100 h-14 md:h-16 px-10 text-[15px] md:text-[16px] font-medium transition-colors rounded-none"
             >
               무료 방문견적 신청
-            </Link>
+            </button>
             <a 
               href="tel:1588-0000"
               className="inline-flex items-center justify-center bg-transparent border border-white/30 text-white hover:bg-white/10 h-14 md:h-16 px-10 text-[15px] md:text-[16px] font-medium transition-colors rounded-none"

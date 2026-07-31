@@ -6,12 +6,25 @@ import { PORTFOLIOS } from '@/data/portfolioData';
 
 const CATEGORIES = ['전체', '발코니창', '내창/방창', '시스템창호', '폴딩/터닝도어'];
 
+const PAGE_SIZE = 6;
+
 export default function Portfolio() {
   const [activeCategory, setActiveCategory] = useState('전체');
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
   const filtered = activeCategory === '전체' 
     ? PORTFOLIOS 
     : PORTFOLIOS.filter(p => p.category === activeCategory);
+
+  const visible = filtered.slice(0, visibleCount);
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+  const currentPage = Math.min(totalPages, Math.ceil(visibleCount / PAGE_SIZE));
+  const hasMore = visibleCount < filtered.length;
+
+  const handleCategory = (cat: string) => {
+    setActiveCategory(cat);
+    setVisibleCount(PAGE_SIZE);
+  };
 
   return (
     <div className="w-full bg-white pb-24">
@@ -32,7 +45,7 @@ export default function Portfolio() {
             {CATEGORIES.map(cat => (
               <button
                 key={cat}
-                onClick={() => setActiveCategory(cat)}
+                onClick={() => handleCategory(cat)}
                 className={`px-5 py-2.5 text-[14px] md:text-[15px] transition-all whitespace-nowrap shrink-0 ${
                   activeCategory === cat 
                     ? 'bg-gray-900 text-white font-medium' 
@@ -52,7 +65,7 @@ export default function Portfolio() {
 
         {/* Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12">
-          {filtered.map((item) => (
+          {visible.map((item) => (
             <Link key={item.id} href={`/portfolio/${item.id}`} className="group block cursor-pointer">
               <div className="relative overflow-hidden aspect-[4/3] mb-5 bg-gray-50">
                 <img 
@@ -80,11 +93,17 @@ export default function Portfolio() {
           ))}
         </div>
 
-        <div className="flex justify-center mt-16 md:mt-24">
-          <Button variant="outline" className="w-full sm:w-auto h-12 md:h-14 px-16 border-gray-200 text-gray-600 rounded-none hover:border-gray-900 hover:text-gray-900 text-[14px] md:text-[15px] transition-colors">
-            더보기 (1/4)
-          </Button>
-        </div>
+        {hasMore && (
+          <div className="flex justify-center mt-16 md:mt-24">
+            <Button
+              variant="outline"
+              onClick={() => setVisibleCount(c => c + PAGE_SIZE)}
+              className="w-full sm:w-auto h-12 md:h-14 px-16 border-gray-200 text-gray-600 rounded-none hover:border-gray-900 hover:text-gray-900 text-[14px] md:text-[15px] transition-colors"
+            >
+              더보기 ({currentPage}/{totalPages})
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );

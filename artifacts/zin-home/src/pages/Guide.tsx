@@ -48,7 +48,7 @@ export default function Guide() {
         {/* Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 md:gap-12">
           {GUIDES.map((guide, i) => (
-            <Link key={i} href="#" className="group">
+            <div key={i} className="group">
               <div className="overflow-hidden aspect-[4/3] mb-5 relative bg-gray-50">
                 <img 
                   src={guide.img} 
@@ -63,7 +63,7 @@ export default function Guide() {
               <h3 className="text-xl md:text-2xl font-medium text-gray-900 group-hover:text-primary transition-colors line-clamp-2 leading-snug break-keep">
                 {guide.title}
               </h3>
-            </Link>
+            </div>
           ))}
         </div>
       </div>

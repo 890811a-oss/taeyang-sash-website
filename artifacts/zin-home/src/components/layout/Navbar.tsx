@@ -15,7 +15,7 @@ const NAV_LINKS = [
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [location] = useLocation();
+  const [location, navigate] = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -79,7 +79,7 @@ export function Navbar() {
               <div className="w-[1px] h-3 bg-gray-300 mx-2"></div>
               <Button 
                 className="rounded-none bg-gray-900 hover:bg-black text-white h-10 px-6 font-medium text-[13px]"
-                onClick={() => window.location.href = '/contact'}
+                onClick={() => navigate('/contact')}
               >
                 빠른 견적신청
               </Button>
@@ -124,7 +124,7 @@ export function Navbar() {
                 
                 <Button 
                   className="w-full rounded-none bg-gray-900 hover:bg-black text-white h-14 text-[16px] font-bold"
-                  onClick={() => window.location.href = '/contact'}
+                  onClick={() => navigate('/contact')}
                 >
                   무료 견적신청하기
                 </Button>

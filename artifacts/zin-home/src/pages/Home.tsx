@@ -82,6 +82,15 @@ export default function Home() {
     emblaApi.on('reInit', onSelect);
   }, [emblaApi, onSelect]);
 
+  useEffect(() => {
+    if (sessionStorage.getItem('scrollTo') === 'quote-form') {
+      sessionStorage.removeItem('scrollTo');
+      setTimeout(() => {
+        document.getElementById('quote-form')?.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    }
+  }, []);
+
   return (
     <div className="w-full bg-white">
       {/* 1. HERO (Video) */}
@@ -117,15 +126,14 @@ export default function Home() {
                 >
                   무료 방문견적 신청
                 </Button>
-                <a href="tel:1588-0000">
-                  <Button 
-                    variant="outline" 
-                    size="lg"
-                    className="bg-transparent border-white/30 text-white hover:bg-white/10 rounded-none h-14 md:h-16 px-8 md:px-10 text-[15px] md:text-[16px] font-medium w-full sm:w-auto transition-colors"
-                  >
-                    상담센터 1588-0000
-                  </Button>
-                </a>
+                <Button 
+                  asChild
+                  variant="outline" 
+                  size="lg"
+                  className="bg-transparent border-white/30 text-white hover:bg-white/10 rounded-none h-14 md:h-16 px-8 md:px-10 text-[15px] md:text-[16px] font-medium w-full sm:w-auto transition-colors"
+                >
+                  <a href="tel:1588-0000">상담센터 1588-0000</a>
+                </Button>
               </div>
             </div>
           </div>
@@ -209,13 +217,13 @@ export default function Home() {
                 { img: windowSystem, name: '프로젝트 창호', desc: '다양한 개폐 방식이 가능한 다목적 기능성 창호' },
               ].map((prod, i) => (
                 <div key={i} className="embla__slide flex-[0_0_85%] sm:flex-[0_0_50%] lg:flex-[0_0_33.333%] min-w-0 pr-6">
-                  <div className="group cursor-pointer">
+                  <Link href="/products" className="group cursor-pointer block">
                     <div className="relative overflow-hidden aspect-[4/5] w-full mb-6 bg-gray-100">
                       <img src={prod.img} alt={prod.name} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
                     </div>
                     <h3 className="text-xl md:text-2xl font-medium text-gray-900 mb-3 group-hover:text-primary transition-colors">{prod.name}</h3>
                     <p className="text-[14px] md:text-[15px] text-gray-500 font-light leading-relaxed break-keep">{prod.desc}</p>
-                  </div>
+                  </Link>
                 </div>
               ))}
             </div>
