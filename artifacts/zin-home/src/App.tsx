@@ -12,8 +12,6 @@ import PortfolioDetail from '@/pages/PortfolioDetail';
 import Guide from '@/pages/Guide';
 import Products from '@/pages/Products';
 import Contact from '@/pages/Contact';
-import Stores from '@/pages/Stores';
-import Events from '@/pages/Events';
 
 const queryClient = new QueryClient();
 
@@ -28,8 +26,6 @@ function Router() {
         <Route path="/guide" component={Guide} />
         <Route path="/products" component={Products} />
         <Route path="/contact" component={Contact} />
-        <Route path="/stores" component={Stores} />
-        <Route path="/events" component={Events} />
         <Route component={NotFound} />
       </Switch>
     </Layout>

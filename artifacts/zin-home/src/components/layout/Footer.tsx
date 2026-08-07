@@ -23,7 +23,6 @@ export function Footer() {
             <ul className="space-y-3">
               <li><Link href="/brand" className="text-[13px] md:text-[14px] hover:text-gray-900 transition-colors font-light">브랜드스토리</Link></li>
               <li><Link href="/portfolio" className="text-[13px] md:text-[14px] hover:text-gray-900 transition-colors font-light">시공실적</Link></li>
-              <li><Link href="/stores" className="text-[13px] md:text-[14px] hover:text-gray-900 transition-colors font-light">오시는 길</Link></li>
             </ul>
           </div>
           
@@ -42,8 +41,7 @@ export function Footer() {
             <a href="tel:010-3996-9749" className="inline-block text-xl md:text-2xl font-medium text-gray-900 mb-3 tracking-tight hover:text-primary transition-colors">전화 상담하기</a>
             <p className="text-[13px] md:text-[14px] text-gray-500 font-light leading-relaxed break-keep">
               상담시간: 평일 09:00 - 18:00<br />
-              (주말 및 공휴일 휴무)<br />
-              이메일: help@taeyang-sash.co.kr
+              (주말 및 공휴일 휴무)
             </p>
           </div>
         </div>
@@ -55,8 +53,8 @@ export function Footer() {
             <span className="font-light">이메일무단수집거부</span>
           </div>
           <div className="text-[11px] md:text-[12px] text-gray-400 font-light text-left lg:text-right leading-relaxed">
-            <p className="mb-1">㈜태양산업 | 대표이사: 김태양 | 사업자등록번호: 123-45-67890</p>
-            <p>서울특별시 강남구 테헤란로 123 태양빌딩 5층</p>
+            <p className="mb-1">태양산업 | 대표자: 김상훈 | 사업자등록번호: 515-02-40930</p>
+            <p>경상북도 경산시 와촌면 팔공로132길 57-10</p>
             <p className="mt-2 text-gray-500">© TAEYANG INDUSTRY. All rights reserved.</p>
           </div>
         </div>

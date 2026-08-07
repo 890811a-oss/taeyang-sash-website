@@ -9,8 +9,6 @@ const NAV_LINKS = [
   { href: '/products', label: '제품보기' },
   { href: '/guide', label: '창호가이드' },
   { href: '/contact', label: '무료견적신청' },
-  { href: '/stores', label: '대리점안내' },
-  { href: '/events', label: '이벤트' },
 ];
 
 export function Navbar() {
